@@ -10,7 +10,7 @@ This project came out of a need to:
 ## Technology stack
 
 - Docker (For having product version control)
-- Python 3.9 Alpine (to keep image size small)
+- Python 3.12 Alpine (to keep image size small)
 - mkdocs (Pip package)
 - mkdocs-material (For nicer presentation)
 
@@ -28,4 +28,4 @@ The docker compose file also mounts the directory `docs` to the container. This 
 
 ## CI/CD & Deployment
 
-The project builds (currently) to thomasve/docs:<version>. This version is presently private to protect sensitive information.
+The project builds (currently) to thomasve/museit-docs:<version>. This version is presently private to protect sensitive information.
