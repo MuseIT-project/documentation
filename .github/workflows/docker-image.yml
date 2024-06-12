@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
 
@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        docker build . -t thomasve/docs:latest
-        docker build . -t thomasve/docs:$GITHUB_SHA
+        docker build . -t thomasve/museit-docs:latest
+        docker build . -t thomasve/dmuseit-docs:$GITHUB_SHA
         docker login -u ${{ secrets.DOCKERHUB_USER }} --password ${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push thomasve/docs:latest
-        docker push thomasve/docs:$GITHUB_SHA
+        docker push thomasve/museit-docs:latest
+        docker push thomasve/museit-docs:$GITHUB_SHA
