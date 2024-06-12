@@ -1,0 +1,13 @@
+site_name: Documentation
+nav:
+    - Home: index.md
+    - 'WP3':
+      - 'Haptic Multiplexer': 'wp3/haptic-multiplexer.md'
+theme:
+  name: material
+  features:
+    - navigation.instant
+  palette:
+    scheme: slate
+plugins:
+  - search
