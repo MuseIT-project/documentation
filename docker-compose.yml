@@ -6,6 +6,7 @@ services:
     container_name: museit-docs
     volumes:
       - ./docs:/site/docs
+      - ./mkdocs.yml:/site/mkdocs.yml
     build:
       context: .
       dockerfile: Dockerfile
