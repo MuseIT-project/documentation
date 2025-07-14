@@ -1,22 +1,31 @@
-name: Docker Image CI
+name: Build and Deploy to RKE2
 
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+
+    - name: Login to Harbor
       run: |
-        docker build . -t thomasve/museit-docs:latest
-        docker build . -t thomasve/dmuseit-docs:$GITHUB_SHA
-        docker login -u ${{ secrets.DOCKERHUB_USER }} --password ${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push thomasve/museit-docs:latest
-        docker push thomasve/museit-docs:$GITHUB_SHA
+        echo "${{ secrets.HARBOR_PASSWORD }}" | docker login harbor.wizardtower.dev -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+
+    - name: Build and Push Docker image
+      run: |
+        docker build . -t harbor.wizardtower.dev/museit/museit-docs:latest
+        docker tag harbor.wizardtower.dev/museit/museit-docs:latest harbor.wizardtower.dev/museit/museit-docs:$GITHUB_SHA
+        docker push harbor.wizardtower.dev/museit/museit-docs:latest
+        docker push harbor.wizardtower.dev/museit/museit-docs:$GITHUB_SHA
+
+  deploy:
+    runs-on: [ self-hosted, linux, rke2 ]
+    needs: build
+    steps:
+    - name: Set image in Deployment
+      run: |
+        kubectl set image deployment/museit-docs museit-docs=harbor.wizardtower.dev/museit/museit-docs:$GITHUB_SHA --namespace=default
+        kubectl rollout status deployment/museit-docs --namespace=default
