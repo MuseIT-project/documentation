@@ -22,10 +22,11 @@ jobs:
         docker push harbor.wizardtower.dev/museit/museit-docs:$GITHUB_SHA
 
   deploy:
-    runs-on: [ self-hosted, linux, rke2 ]
+    runs-on: [ self-hosted, linux, rke2, wizardtower ]
     needs: build
     steps:
     - name: Set image in Deployment
       run: |
         kubectl set image deployment/museit-docs museit-docs=harbor.wizardtower.dev/museit/museit-docs:$GITHUB_SHA --namespace=default
         kubectl rollout status deployment/museit-docs --namespace=default
+  
