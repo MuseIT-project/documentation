@@ -26,10 +26,12 @@ jobs:
 
   deploy:
     runs-on: [ self-hosted, linux, rke2, wizardtower ]
+    env:
+      KUBECONFIG: /root/.kube/config
     needs: build
     steps:
-    - name: Set KUBECONFIG
-      run: export KUBECONFIG=/root/.kube/config && kubectl get nodes
+    - name: Verify Kubeconfig
+      run: kubectl get nodes
     - name: Set image in Deployment
       run: |
         kubectl set image deployment/museit-docs museit-docs=harbor.wizardtower.dev/museit/museit-docs:$GITHUB_SHA --namespace=default
