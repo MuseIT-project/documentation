@@ -38,7 +38,7 @@ Responsibilities are split as follows:
 
 ### Schematic representation
 
-![A full schema](schematic.jpg)
+![A full schema](contents/schematic.jpg)
 
 ## Deployment & development
 

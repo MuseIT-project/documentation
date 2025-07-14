@@ -1,12 +1,22 @@
 site_name: Documentation
 nav:
     - Home: index.md
-    - 'WP3':
-      - 'Haptic Multiplexer': 'wp3/haptic-multiplexer.md'
+    - WP3:
+      - 'HaptiDesigner':
+        - 'Introduction': 'wp3/index.md'
+        - 'User manual': 'wp3/user-manual.md'
+        - 'Architecture and design': 'wp3/haptic-multiplexer.md'
+        - 'API Guide': 'wp3/haptic-api-guide.md'
 theme:
   name: material
   features:
     - navigation.instant
+    - navigation.tabs
+    - navigation.path
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
   palette:
     scheme: slate
 plugins:
