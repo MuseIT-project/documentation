@@ -1,6 +1,6 @@
 # WP3 software overview
 
-Work package 3 contains several outputs. They are listed below.
+Work package 3 contains several outputs. They are listed below, use any of the links to navigate.
 
 ## HaptiDesigner
 
