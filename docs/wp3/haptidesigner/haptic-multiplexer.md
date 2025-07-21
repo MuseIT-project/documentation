@@ -15,9 +15,9 @@ There are two software artefacts to speak of:
 
 The architecture of the Haptic Multiplexer assumes three componets working in interaction:
 
-- The Multiplexer; this is a FastAPI backend which connects the database with the services. The Multiplexer has a REST API to allow for direct integration, has a Kafka listener to ensure data comes in via Kafka, and a Websocket server which acts as host to the connected haptic devices. This is self-documenting via Swagger when the container is started.
+- The Multiplexer; this is a FastAPI backend which connects the database with the services. The Multiplexer has a REST API to allow for direct integration, has a Kafka listener to ensure data comes in via the REST API, and a Websocket server which acts as host to the connected haptic devices. This is self-documenting via Swagger when the container is started.
 - The database; this is simply a Postgres database to which the Multiplexer can connect.
-- The Haptic Designer; this is a (future) frontend which will talk to the Haptic Multiplexer, and expose it's API through a webinterface. The webinterface is intended to mimic the HaptiDesigner executable both in function and theme.
+- HaptiDesigner; this is a frontend which talks to the Haptic Multiplexer, and expose it's API through a webinterface. The webinterface is intended to mimic the HaptiDesigner Desktop version both in function and theme.
 
 ### Usage & responsibilities
 
@@ -28,7 +28,7 @@ Responsibilities are split as follows:
     - Offering a REST API to integrators
     - Talking to the connected haptic devices to send haptic sentences
     - Managing users and sessions
-    - Receiving input from Kafka
+    - Receiving input from the API, or other connected tools
 - The database is responsible for:
     - Ensuring data integrity
     - Handling queries from the Multiplexer
@@ -38,26 +38,27 @@ Responsibilities are split as follows:
 
 ### Schematic representation
 
-![A full schema](contents/schematic.jpg)
+![A full schema](images/schematic.jpg)
 
 ## Deployment & development
 
 ### Environments
 
-Currently, the haptic multiplexer is hosted at [https://multiplexer.haptics.catdad.nl](https://multiplexer.haptics.catdad.nl). The Swagger interface, which hosts the documentation, lives at [https://multiplexer.haptics.catdad.nl/docs](https://multiplexer.haptics.catdad.nl). This is presently the only live environment, pending the arrangement of a production instance.
+Currently, HaptiVerse is hosted at [https://multiplexer.haptics.catdad.nl](https://multiplexer.haptics.catdad.nl). The Swagger interface, which hosts the documentation, lives at [https://multiplexer.haptics.catdad.nl/docs](https://multiplexer.haptics.catdad.nl). This is presently the only live environment, pending the arrangement of a production instance.
 
 ### Local development
 
-To locally use Haptic Multiplexer, do the following:
+To locally use HaptiDesigner, do the following:
 
 1. Clone the repo
-2. Run `docker compose build`
-3. Navigate to `http://localhost:8000/docs/` 
-4. Upload a .hap file to load haptograms
+2. Run `docker compose up --build`
+3. Navigate to `http://localhost:8000/docs/`
+4. Create a user by making a post to the /users endpoint, and login.
+5. Upload a .hap file to load haptograms
 
 ### Production deployment
 
-To host an instance of the Haptic Multiplexer, do the following:
+To host an instance of HaptiDesigner, do the following:
 
 1. Build a version with the included Dockerfile
 2. Move this to a production server.

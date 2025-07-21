@@ -3,10 +3,10 @@ nav:
     - Home: index.md
     - WP3:
       - 'HaptiDesigner':
-        - 'Introduction': 'wp3/index.md'
-        - 'User manual': 'wp3/user-manual.md'
-        - 'Architecture and design': 'wp3/haptic-multiplexer.md'
-        - 'API Guide': 'wp3/haptic-api-guide.md'
+        - 'Introduction': 'wp3/haptidesigner/index.md'
+        - 'User manual': 'wp3/haptidesigner/user-manual.md'
+        - 'Architecture and design': 'wp3/haptidesigner/haptic-multiplexer.md'
+        - 'API Guide': 'wp3/haptidesigner/haptic-api-guide.md'
 theme:
   name: material
   features:
