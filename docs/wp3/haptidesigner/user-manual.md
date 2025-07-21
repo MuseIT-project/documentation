@@ -96,6 +96,8 @@ A number of specific actions exist for templates:
 - Shape/color changes; in order to visually distinguish your template nodes, you can change the shape and colors for them to create your own conventions (such as; triangles for shoulders, squares for lower back).
 - Disabling/enabling; a template may be disabled or enabled, to avoid it from taking part in haptogram design. This can be useful if your actuators aren't spaced out as a Carthesian grid, creating empty space between actuators visually.
 
+You can also *multiselect* template nodes, to enable or disable in bulk. To enable this, *hold shift or CTRL*, then click the template nodes.
+
 #### Designing templates & making your template recognizable
 
 When designing a template, the following things should be considered:
@@ -107,14 +109,88 @@ When designing a template, the following things should be considered:
 
 ### Haptograms
 
+The Haptograms screen has a number of components; some of these become visible as you create a new Haptogram:
+
+![Haptogram screen with highlighted items](images/haptidesigner_3.png)
+
 #### Creating your first haptic pattern
+
+In order to experiment with a first haptic pattern, do the following:
+
+1. Create a new Haptogram using the "Add" button. Name it whatever you like. Use the 3x3 standard configuration (or one of your self-made ones)
+2. Watch as it appears
+3. Left-click in the Haptogram Designer, and hold this mouse button
+4. Draw over the template nodes in a pattern of your choosing.
+5. Release your mouse button, and watch the frames appear.
+
+To summarize what we've just done:
+
+1. You created a new haptogram of your choosing.
+2. You created your first frames, containing activations.
+3. You saved these within the haptogram.
+
+Let's talk about what all those things mean.
 
 #### Frames, nodes, and previewing
 
+When we talk about haptograms, it's important to understand a number of concepts. These are listed below.
+
+| Term       | Meaning                                                                                                                                                      |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Haptogram  | A meaning-bearing structure represented<br>by sequential, and parallel haptic vibration                                                                      |
+| Frame      | A set duration in which haptic vibrations<br>occur, measured in milliseconds (ms).                                                                           |
+| Intensity  | An intensity for all activations in a frame.                                                                                                                 |
+| Activation | The state of an template node during a frame; <br>a template node may either activate, or not. <br>Activated template nodes represent vibrating<br>actuators |
+| Sequential | Haptic vibrations that follow one after the <br>other. This is handled through multiple frames, <br>each containing activations.                             |
+| Parallel   | Haptic vibrations firing at the same time. This<br>is handled through activations in the same frame.                                                         |
+| Simulate   | A virtual simulation of all frames and activations.                                                                                                          |
+| Run        | Streaming the haptogram to a connected device.                                                                                                               |
+
 #### Advanced usage - parallel activations in the same frame
+
+What you've done during your first haptogram, was create a number of frames, equal to the amount of activations you've drawn over. You may have noticed a few caveats:
+
+- It's impossible to chain multiple actuations on the same node in this manner. If you want this, for some reason: manually add a frame.
+- All frames are created with the default duration and intensity you set in the top configuration.
+
+If you want to create activations in the same frame, however, *hold CTRL or shift* as you draw. This will ensure all activations will be set in your currently selected frame.
 
 #### The frame bar - on how to move frames around
 
+On the bottom of the screen, you'll see a number of buttons, allowing you to add and delete frames. These act in the following manner:
+
+1. Adding a frame inserts it after your current frame. It will contain no activations to start with.
+2. Deleting a frame deletes your current frame.
+
+But what if you want to move frames, or delete ranges of frames, or undo things in larger actions?
+
+Select any frames, and you'll see a menu + submenu's appear. This menu allows you to do the following:
+
+1. Move frames, either one position to the left or right, or all the way to the beginning or back.
+2. Delete frames, either the current one, all except the currently selected one, all before this frame, or all after.
+3. Add a frame, either one position to the left or right, or all the way to the beginning or back.
+4. Duplicate your current frame, which will be inserted to the right of your current frame. You can then move it around as you need.
+
+#### Simulating and running haptograms
+
+Once you have designed a haptogram, you can do two things with it:
+
+1. You can simulate it, using the *Simulate* button on top. This gives you an on-screen representation of the haptic pattern you're sending, which is walked through frame by frame.
+2. If you want to test it on a connected device, you should run it. Selecting the run button gives you an overview of the currently connected devices, which you can then select one or several of. Pressing *send* will send the current haptogram, such as it is, to this device, which will then be tasked with interpretation and playing it.
+
+For the section on how to configure and install your own device, we refer you to the streaming haptograms section of this guide. In case you are considering connecting a new device, please note that is considered something for a software developer to deal with.
+
 ### Sentences
+
+Haptograms combine naturally into sentences; similar to natural language, these have pauses, combine several patterns to construct compound meanings. 
+
+![Haptic sentence configurator](images/haptidesigner_4.png)
+
+You have the following options here:
+
+1. Create a new sentence; you'll need to select a template. This selection will determine what haptograms (related to the same template) are valid for your sentence.
+2. Drag parts of the available haptograms from the left to the right, either by dragging and dropping, or by using the `>` and `<` buttons to do so.
+3. Add delays between haptic parts. These are like empty frames, containing no activations.
+4. Simulate and run, which work similar to what they do in Haptograms.
 
 ## Streaming haptograms
