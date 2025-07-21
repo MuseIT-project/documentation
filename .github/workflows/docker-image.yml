@@ -2,8 +2,7 @@ name: Build and Deploy to RKE2
 
 on:
   push:
-    branches: [ "master", 'fix/sbom' ]
-
+    branches: [ "master" ]
 jobs:
   build:
     runs-on: ubuntu-latest
