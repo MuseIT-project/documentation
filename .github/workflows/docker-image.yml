@@ -32,10 +32,9 @@ jobs:
         sudo mv cosign /usr/local/bin/
 
     - name: Install oras
-      run: |
-        curl -sSfL https://github.com/oras-project/oras/releases/latest/download/oras_1.1.0_linux_amd64.tar.gz \
-          | tar -xz
-        sudo mv oras /usr/local/bin/
+      uses: oras-project/setup-oras@v1
+      with:
+        version: latest
 
     - name: Build and Push Docker image
       run: |
