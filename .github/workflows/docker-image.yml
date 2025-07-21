@@ -17,12 +17,50 @@ jobs:
         username: ${{ secrets.HARBOR_USERNAME }}
         password: ${{ secrets.HARBOR_PASSWORD }}
 
+    - name: Create Python SBOM
+      run: |
+        python -m pip install --upgrade pip
+        pip install cyclonedx-bom
+        pip install -r requirements.txt
+        cyclonedx-bom -r requirements.txt -o sbom-python.xml
+
+    - name: Install cosign
+      run: |
+        curl -sSfL https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64 \
+          -o cosign
+        chmod +x cosign
+        sudo mv cosign /usr/local/bin/
+
+    - name: Install oras
+      run: |
+        curl -sSfL https://github.com/oras-project/oras/releases/latest/download/oras_1.1.0_linux_amd64.tar.gz \
+          | tar -xz
+        sudo mv oras /usr/local/bin/
+
     - name: Build and Push Docker image
       run: |
         docker build . -t harbor.wizardtower.dev/museit/museit-docs:latest
         docker tag harbor.wizardtower.dev/museit/museit-docs:latest harbor.wizardtower.dev/museit/museit-docs:$GITHUB_SHA
         docker push harbor.wizardtower.dev/museit/museit-docs:latest
         docker push harbor.wizardtower.dev/museit/museit-docs:$GITHUB_SHA
+
+    - name: Push SBOM to Harbor
+      run: |
+        oras push harbor.wizardtower.dev/museit/museit-docs/sbom:latest \
+          --manifest-config sbom-python.xml:application/xml \
+          sbom-python.xml:application/xml
+        oras push harbor.wizardtower.dev/museit/museit-docs/sbom:$GITHUB_SHA \
+          --manifest-config sbom-python.xml:application/xml \
+          sbom-python.xml:application/xml
+
+    - name: Sign SBOM with Cosign
+      env:
+        COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+      run: |
+        echo "${{ secrets.COSIGN_PRIVATE_KEY }}" > cosign.key
+        cosign sign \
+          --key cosign.key \
+          harbor.wizardtower.dev/museit/museit-docs/sbom:$GITHUB_SHA
 
   deploy:
     runs-on: [ self-hosted, linux, rke2, wizardtower ]
