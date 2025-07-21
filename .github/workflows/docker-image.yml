@@ -2,7 +2,7 @@ name: Build and Deploy to RKE2
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", 'fix/sbom' ]
 
 jobs:
   build:
@@ -20,9 +20,9 @@ jobs:
     - name: Create Python SBOM
       run: |
         python -m pip install --upgrade pip
-        pip install cyclonedx-bom
+        sudo npm install -g @cyclonedx/cdxgen
         pip install -r requirements.txt
-        cyclonedx-bom -r requirements.txt -o sbom-python.xml
+        cdxgen -t python -o sbom.json .
 
     - name: Install cosign
       run: |
@@ -47,11 +47,11 @@ jobs:
     - name: Push SBOM to Harbor
       run: |
         oras push harbor.wizardtower.dev/museit/museit-docs/sbom:latest \
-          --manifest-config sbom-python.xml:application/xml \
-          sbom-python.xml:application/xml
+          --manifest-config sbom-python.json:application/json \
+          sbom-python.json:application/json
         oras push harbor.wizardtower.dev/museit/museit-docs/sbom:$GITHUB_SHA \
-          --manifest-config sbom-python.xml:application/xml \
-          sbom-python.xml:application/xml
+          --manifest-config sbom-python.json:application/json \
+          sbom-python.json:application/json
 
     - name: Sign SBOM with Cosign
       env:
