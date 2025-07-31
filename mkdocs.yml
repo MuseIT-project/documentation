@@ -7,6 +7,15 @@ nav:
         - 'User manual': 'wp3/haptidesigner/user-manual.md'
         - 'Architecture and design': 'wp3/haptidesigner/haptic-multiplexer.md'
         - 'API Guide': 'wp3/haptidesigner/haptic-api-guide.md'
+      - 'Picture2Notes':
+        - 'Introduction': 'wp3/picture2notes/index.md'
+        - 'User manual': 'wp3/picture2notes/user-manual.md'
+        - 'Integration manual': 'wp3/picture2notes/integration_manual.md'
+      - 'Workflow Orchestrator':
+        - 'Introduction': 'wp3/workflows/index.md'
+        - 'Ingestion': 'wp3/workflows/ingestion.md'
+        - 'Transformation': 'wp3/workflows/transformation.md'
+        - 'Enrichment': 'wp3/workflows/enrichment.md'
 theme:
   name: material
   features:
