@@ -11,7 +11,7 @@ nav:
         - 'Introduction': 'wp3/picture2notes/index.md'
         - 'User manual': 'wp3/picture2notes/user-manual.md'
         - 'Integration manual': 'wp3/picture2notes/integration_manual.md'
-      - 'Workflows':
+      - 'Workflow Orchestrator':
         - 'Introduction': 'wp3/workflows/index.md'
         - 'Ingestion': 'wp3/workflows/ingestion.md'
         - 'Transformation': 'wp3/workflows/transformation.md'
