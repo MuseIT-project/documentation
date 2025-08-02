@@ -21,3 +21,7 @@ What we refer to is essentially an ETL pipeline, though the steps require a litt
     - Files are typically uploaded to an S3-compatible container.
     - Metadata is deposited back to local file.
     - Plotting is ingested into a ChromaDB instance (and sometimes, exported to JSON directly)
+
+## References and source
+
+The work done is contained within the [repo](https://github.com/MuseIT-project/orchestrator-deployment-repo) on Github. The readme there both refers to the original project produced under ODISSEI and our version.
