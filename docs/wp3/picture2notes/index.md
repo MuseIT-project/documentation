@@ -2,12 +2,13 @@
 
 Picture2notes is a Javascript application which is responsible for translating a processed image into different types of modalities.
 
-## Topics
+## Topics & references
 
 A few topics are covered:
 
 - A user guide, which can be found [here](user-manual.md)
 - An integration guide, which can be found [here](integration_manual.md)
+- And lastly, a guide wouldn't be complete without access to the source code, located [here](https://github.com/MuseIT-project/pictures2notes)
 
 ## Use-cases
 
