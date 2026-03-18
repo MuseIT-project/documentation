@@ -16,6 +16,11 @@ nav:
         - 'Ingestion': 'wp3/workflows/ingestion.md'
         - 'Transformation': 'wp3/workflows/transformation.md'
         - 'Enrichment': 'wp3/workflows/enrichment.md'
+    - WP5:
+      - 'Cocreation Dashboard':
+        - 'Introduction': 'wp5/cocreation_dashboard/index.md'
+        - 'Technical requirements & setup': 'wp5/cocreation_dashboard/setup.md'
+        - 'Compatible devices': 'wp5/cocreation_dashboard/devices.md'
 theme:
   name: material
   features:
