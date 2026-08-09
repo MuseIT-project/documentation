@@ -29,3 +29,4 @@ The docker compose file also mounts the directory `docs` to the container. This 
 ## CI/CD & Deployment
 
 The project builds (currently) to thomasve/museit-docs:<version>. This version is presently private to protect sensitive information.
+
